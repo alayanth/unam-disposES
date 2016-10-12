@@ -1,9 +1,12 @@
+/*
+Este programa hace uso del puerto paralelo para encender un display de 7 segmentos y también puede usarse para escribir datos a una memoria RAM
++/
+
 #include <iostream>
 #include <windows.h>
 #include <stdio.h>
-//#include <string>
 
-#define PARALLEL 0x378
+#define PARALLEL 0x378 //dirección del puerto paralelo
 
 using namespace std;
 
