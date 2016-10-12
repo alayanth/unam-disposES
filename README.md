@@ -1,7 +1,7 @@
-# UNAM - Dispositivos de Almacenamiento y entrada y salida
+# UNAM - Dispositivos de almacenamiento y de entrada y salida
 Hola.
 
-En este repositorio encontrarás el código fuente para las prácticas que involucran el uso del puerto paralelo y el puerto serial (generalmente son las 7 , 8, 9 y 10).
+En este repositorio encontrarás el código fuente para las prácticas que involucran el uso del puerto paralelo y el puerto serial (generalmente son las 7, 8, 9 y 10).
 
 El código fuente fue escrito en C++, además vas a necesitar unas librerias que puedes encontrar en:
 http://www.highrez.co.uk/downloads/inpout32/
