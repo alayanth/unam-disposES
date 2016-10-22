@@ -6,11 +6,24 @@
 #include<algorithm>
 #include <sstream>
 
+//Direcci贸n de salida de datos del puerto paralelo
 #define PARALLEL 0x378
+//Direcci贸n del registro de estados de puerto paralelo (entrada de datos)
 #define REG_STATUS 0x379
+//revisar muy bien cuantos grados da el motor por cada paso
 #define GRADOS_POR_PASO 6.0
-//3.6
+//Retraso para el movimiento del motor el sweet spot esta entre 50 y 100 
 #define VALOR 80
+
+
+/*Para enviar datos del puerto paralelo usar los pines 2, 3, 4 y 5
+  Para la entrada de datos usar los pines 11, 10 y 12 en ese orden
+  
+  El pin 11 est谩 invertido, es decir si se le manda un 1 entrara un 0 
+  y viceversa.
+  
+  Dudas, reclamaciones y contribuciones at alayanth@gmail.com
+*/
 
 using namespace std;
 
@@ -23,19 +36,14 @@ typedef BOOL (__stdcall *lpIsXP64Bit)(void);
 //declaracion de funciones
 void derecha(float grados);
 void izquierda(float grad);
-void moverMotor(float grados,int dir); //direcci髇 0 izquierda, direcci髇 1 derecha
+
 string DecToBin(int number);
-
-HINSTANCE cargaLibreria(void);
+HINSTANCE cargaLibreria(void); //para cargar la libreria DLL
 int leeEstado(void);
-
+void moverMotor(float grados,int dir);//direcci贸n 0 izquierda, direcci贸n 1 derecha ***EXPERIMENTAL****
 
 int main(){
-    //cargaLibreria();
-    //inpfuncPtr in;
-    //oupfuncPtr out;
-   //char datosent[4];
-   char opt;
+   char opt; 
    int resultado;
    int status = 0;
    while(1){
@@ -46,11 +54,11 @@ int main(){
              "\n\nPara salir presiona \"q\" \nPresiona una tecla para leer el registro de estados: ");
       cin>>opt;
       cout<<opt;
-      if (opt == 'q'){ //Comparaci髇 para terminar el programa
+      if (opt == 'q'){ //Comparaci贸n para terminar el programa
         exit(0);
       }
       else{
-        int status = leeEstado();
+        int status = leeEstado(); //almacena el registro de estado
         std::stringstream ss;
         ss << "0x" << std::hex << status;
         cout << " hex> 0x" << std::hex << status;
@@ -64,23 +72,18 @@ int main(){
           if (resultado == 0){
             printf("1080 grados izquierda");
             izquierda(1080);
-            //cin.get();
           }
           resultado = s.compare("1"); //000 1
-          //resultado = strncmp(s,"000",3);
           if (resultado == 0){
              printf("720 grados derecha");
              derecha(720);
           }
           resultado = s.compare("b"); //101 1
-          //resultado = strncmp(s,"101",3);
           if (resultado == 0){
              printf("180 grados izquierda");
              izquierda(180);
-             //cin.get();
           }
           resultado = s.compare("d"); //110 1
-          //resultado = strncmp(s,"110",3);
           if (resultado == 0){
              printf("270 grados derecha");
              derecha(270);
@@ -151,7 +154,9 @@ void derecha(float grados){
       i++;
    }
 }
-
+/*Funci贸n experimental no se han hecho pruebas con ella, 
+se agradecer铆a si se puede probar el correcto 
+funcionamiento de la misma*/
 void moverMotor(float grados, int dir){
     HINSTANCE hLib = cargaLibreria();
     oupfuncPtr out;
@@ -166,34 +171,34 @@ void moverMotor(float grados, int dir){
    pasos = grados/GRADOS_POR_PASO;
    if(dir = 0){
         for(i=0; i<pasos; i++){
-          out(PARALLEL, 0x09); //1100
+          out(PARALLEL, 0x08); //1000
           Sleep(VALOR);
-          printf("Paso # %d\n",i);
-          out(PARALLEL, 0x05); //0110
+          i++;
+          out(PARALLEL, 0x04); //0100
           Sleep(VALOR);
-          printf("Paso # %d\n",i);
-          out(PARALLEL, 0x06); //0011
+          i++;
+          out(PARALLEL, 0x02); //0010
           Sleep(VALOR);
-          printf("Paso # %d\n",i);
-          out(PARALLEL, 0x0A); //1001
+          i++;
+          out(PARALLEL, 0x01); //0001
           Sleep(VALOR);
-          printf("Paso # %d\n",i);
+          i++;
         }
    }
    else{
         for(i=0; i<pasos; i++){
-          out(PARALLEL, 0x0A); //1100
+          out(PARALLEL, 0x01); //0001
           Sleep(VALOR);
-          printf("Paso # %d\n",i);
-          out(PARALLEL, 0x06); //0110
+          i++;
+          out(PARALLEL, 0x02); //0010
           Sleep(VALOR);
-          printf("Paso # %d\n",i);
-          out(PARALLEL, 0x05); //0011
+          i++;
+          out(PARALLEL, 0x04); //0100
           Sleep(VALOR);
-          printf("Paso # %d\n",i);
-          out(PARALLEL, 0x09); //1001
+          i++;
+          out(PARALLEL, 0x08); //1000
           Sleep(VALOR);
-          printf("Paso # %d\n",i);
+          i++;
         }
    }
 }
@@ -201,8 +206,6 @@ void moverMotor(float grados, int dir){
 HINSTANCE cargaLibreria(void){
 
     HINSTANCE hLib;
-    //lpIsXP64Bit gfpIsXP64Bit;
-
     hLib = LoadLibrary("inpout32.dll");
 
     if (hLib == NULL) {
@@ -214,7 +217,6 @@ HINSTANCE cargaLibreria(void){
     else {
        cout<<"Libreria cargada correctamente";
        return hLib;
-       //gfpIsXP64Bit = (lpIsXP64Bit)GetProcAddress(hLib, "IsXP64Bit");
     }
 }
 
@@ -237,7 +239,6 @@ int leeEstado(void){
 string DecToBin(int number)
 {
     string result = "";
-
     do
     {
         if ( (number & 1) == 0 )
