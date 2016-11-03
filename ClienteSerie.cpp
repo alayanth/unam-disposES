@@ -14,7 +14,7 @@ int main(int argc, char **argv) {
     int ch;
     int comma = ',';
     int last = '!';
-    //char buffer[1];
+    
     HANDLE file;
     COMMTIMEOUTS timeouts;
     DWORD read, written;
@@ -22,8 +22,8 @@ int main(int argc, char **argv) {
     HANDLE keyboard = GetStdHandle(STD_INPUT_HANDLE);
     HANDLE screen = GetStdHandle(STD_OUTPUT_HANDLE);
     DWORD mode;
-    char port_name[128] = "\\\\.\\COM1";
-    char init[] = ""; // e.g., "ATZ" to completely reset a modem.
+    char port_name[128] = "\\\\.\\COM1"; // editar si el COM no es este
+    char init[] = "";
 
     cout << "Programa para controlar un motor de pasos a traves del puerto paralelo y serie"
          << "\n\n Ingresa los grados que se movera el motor: ";
@@ -43,14 +43,13 @@ int main(int argc, char **argv) {
             exit(0);
             break;
     }
-    //transformaci髇 de float a string
+    //transformaci贸n de float a string
     std::stringstream ss;
     ss << grados;
     std::string sGrados(ss.str());
-    //string --> char array
     const char *cGrados = sGrados.c_str();
 
-    // open the comm port.
+    // Abrimos el puerto COM y lo configuramos
     file = CreateFile(port_name,
         GENERIC_READ | GENERIC_WRITE,
         0,
@@ -60,7 +59,7 @@ int main(int argc, char **argv) {
         NULL);
 
     if ( INVALID_HANDLE_VALUE == file) {
-        fprintf(stderr,"opening file");
+        fprintf(stderr,"Error abriendo el puerto");
         return 1;
     }
 
@@ -69,14 +68,14 @@ int main(int argc, char **argv) {
     port.DCBlength = sizeof(port);
     if ( !GetCommState(file, &port))
         fprintf(stderr,"getting comm state");
-    //Configuraci髇 del puerto
+    //Configuraci贸n del puerto
     // !!!!!!!!!!Debe see igual en el cliente como en el servidor!!!!!!
     port.BaudRate = CBR_9600;
     port.ByteSize = 8;
     port.StopBits = ONESTOPBIT;
     port.Parity = NOPARITY;
     if (!SetCommState(file, &port))
-        fprintf(stderr,"adjusting port settings");
+        fprintf(stderr,"Error en los ajustes del puerto");
 
     //timeouts para lectura y escritura
     timeouts.ReadIntervalTimeout = 1;
@@ -106,24 +105,25 @@ int main(int argc, char **argv) {
     if (written != sizeof(init))
         fprintf(stderr,"not all data written to port");
 
-    //Convierte los datos tomados en el programa y los envia como ints sobre
+    //Convierte los datos tomados en el programa y los envia como chars sobre
     //el puerto serie
-    //WriteFile(file,cGrados, sizeof(cGrados), &written, NULL);
+    //Envia los grados char a char
     for(i=0;i < strlen(cGrados); i++){
         WriteFile(file,&cGrados[i], 1, &written, NULL);
     }
+    //caracter de separaci贸n, sirve para saber donde cortar la cadena e identificar parametros
     WriteFile(file,&comma, 1, &written, NULL);
     switch(sentido){
         case 0:
             cSentido = '0';
-            WriteFile(file,&cSentido, 1, &written, NULL);
+            WriteFile(file,&cSentido, 1, &written, NULL); //envia el sentido del giro
             break;
         case 1:
             cSentido = '1';
-            WriteFile(file,&cSentido, 1, &written, NULL);
+            WriteFile(file,&cSentido, 1, &written, NULL); 
             break;
     }
-    WriteFile(file,&last, 1, &written, NULL); // caracter de control
+    WriteFile(file,&last, 1, &written, NULL); // caracter de control para finalizar nuestro envio de informaci贸n
 
     // cierra handlers y vamonos!!
     CloseHandle(keyboard);
