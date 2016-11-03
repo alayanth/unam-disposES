@@ -4,10 +4,8 @@
 #include <windows.h>
 #include <sstream>
 
-//Direcci髇 de salida de datos del puerto paralelo
+//Direcci贸n de salida de datos del puerto paralelo
 #define PARALLEL 0x378
-//Direcci髇 del registro de estados de puerto paralelo (entrada de datos)
-#define REG_STATUS 0x379
 //revisar muy bien cuantos grados da el motor por cada paso
 #define GRADOS_POR_PASO 6.0
 //Retraso para el movimiento del motor el sweet spot esta entre 50 y 100
@@ -25,8 +23,8 @@ int main(int argc, char **argv) {
     char buffer [1];
     const char *direction;
     char port_name[128] = "\\\\.\\COM1";
-    char init[] = ""; // e.g., "ATZ" to completely reset a modem.
-
+    char init[] = ""; 
+    
     int stringBuffer[15];
     int sentido;
     int i = 0;
@@ -46,7 +44,7 @@ int main(int argc, char **argv) {
     if ( argc > 2 )
         sprintf(port_name, "\\\\.\\COM%c", argv[1][0]);
 
-    // open the comm port.
+    // Abrimos el puerto COM.
     file = CreateFile(port_name,
         GENERIC_READ | GENERIC_WRITE,
         0,
@@ -65,7 +63,7 @@ int main(int argc, char **argv) {
     port.DCBlength = sizeof(port);
     if ( !GetCommState(file, &port))
         fprintf(stderr,"bad getting comm state");
-
+    //No olvidar!, la configuraci贸n en el servidor y cliente debe ser la misma
     port.BaudRate = CBR_9600;
     port.ByteSize = 8;
     port.StopBits = ONESTOPBIT;
@@ -105,14 +103,16 @@ int main(int argc, char **argv) {
     if (written != sizeof(init))
         fprintf(stderr,"not all data written to port");
 
-    //loop de ejecuci髇
+    //loop de ejecuci贸n
     do {
-        // check for data on port and display it on screen.
+        // Leemos la informaci贸n enviada desde el puerto serie
         ReadFile(file, buffer, sizeof(buffer), &read, NULL);
         if ( read ){
             if(buffer[0] != '!'){
+                //escribe a la pantalla lo recibido
                 WriteFile(screen, &buffer, read, &written, NULL);
                 ch = buffer[0];
+                //transformamos los chars a ints
                 if (ch != 0){
                     switch(ch){
                         case 48:
@@ -153,17 +153,16 @@ int main(int argc, char **argv) {
                 }
             }
         }
-    } while (buffer[0] != '!');
-
+    } while (buffer[0] != '!'); // caracter de control para saber que finaliz贸 el env铆o de informaci贸n
+    
+    //tama帽o del array 
     int tIntArray = i;
-    //cout << "\n Tamano del array: " << tIntArray;
     for (i = 0; i < tIntArray; ++i){
+        //Separaci贸n de la coma y de la variable sentido
         if(stringBuffer[i] == 44){
-            cout << "\nCOMMA!!";
-            cout << "\nSiguiente caracter: " << stringBuffer[i+1];
             switch(stringBuffer[i+1]){
                 case 1:
-                    sentido = 1;
+                    sentido = 1;// trasformamos el char en int
                     break;
                 case 0:
                     sentido = 0;
@@ -171,12 +170,8 @@ int main(int argc, char **argv) {
             }
         }
     }
-    /*
     cout << "\n";
-    for(i=0; i < tIntArray; ++i)
-        cout << stringBuffer[i] << " ";
-    */
-    cout << "\n";
+    //trasformamos el *char --> int
     for (i=0; i < tIntArray-2; ++i)
         ss << stringBuffer[i];
     int grados;
@@ -188,7 +183,6 @@ int main(int argc, char **argv) {
 
     Sleep(50000);
     //cerrando handlers y vamonos
-    //CloseHandle(keyboard)
     CloseHandle(file);
     return 0;
 }
@@ -205,7 +199,7 @@ void moverMotor(int grados, int dir){
    float pasos=0;
    int i;
    pasos = grados/GRADOS_POR_PASO;
-   if(dir == 0){
+   if(dir == 0){//sentido horario
         for(i=0; i<pasos; i++){
           out(PARALLEL, 0x08); //1000
           Sleep(VALOR);
@@ -221,7 +215,7 @@ void moverMotor(int grados, int dir){
           i++;
         }
    }
-   else{
+   else{// antihorario
         for(i=0; i<pasos; i++){
           out(PARALLEL, 0x01); //0001
           Sleep(VALOR);
@@ -248,7 +242,6 @@ HINSTANCE cargaLibreria(void){
         cout<<"Error en cargar la libreria! =/\n";
         cin.get();
         exit(-1);
-        //return -1;
     }
     else {
        cout<<"Libreria cargada correctamente";
