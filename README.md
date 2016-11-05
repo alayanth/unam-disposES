@@ -27,7 +27,7 @@ Descripción de los archivos
   ```  
   PParallelDisplay.cpp
   ```
-  * Este código hace lo mismo que `PParallelLED.cpp`, la diferencia radica en que está codificado para mostrar las letras del abecedario inglés (no hay ñ pero puedes añadirla tú), los números del 0 al 9, además incluye a los caratéres `.` y `-`. Esto con el fin de hacer la escritura de carateres en la memoria RAM más fácilmente. Tomar en cuenta que este programa esta codificado para trabajar con un display de ánodo común (prende con ceros). Tal vez lo arregle para trabajar con cátodo común. Tal vez.
+  * Este código hace lo mismo que `PParallelLED.cpp`, la diferencia radica en que está codificado para mostrar las letras del abecedario inglés (no hay *ñ*, pero puedes añadirla tú), los números del 0 al 9, además incluye a los caratéres `.` y `-`. Esto con el fin de hacer la escritura de carateres en la memoria RAM más fácilmente. Tomar en cuenta que este programa esta codificado para trabajar con un display de ánodo común (prende con ceros). Tal vez lo arregle para trabajar con cátodo común. Tal vez.
   
   ```  
   PParallelMotor.cpp
