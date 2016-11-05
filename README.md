@@ -3,8 +3,15 @@ Hola.
 
 En este repositorio encontrarás el código fuente para las prácticas que involucran el uso del puerto paralelo, el puerto serial y una conexión de red (puede ser vía Ethernet o Wi-Fi); para en la primer práctica, escribir datos a una memoria RAM y en las siguientes prácticas mover un motor a pasos (generalmente son las 6, 7, 8, 9 y 10).
 
-El código fuente fue escrito en C++ y Java, además vas a necesitar unas librerias que puedes encontrar en:
+El código fuente fue escrito en C++ y Java, además vas a necesitar las librerias:
+```
+inpout32.dll
+inpoutx64.dll
+```
+Que puedes encontrar en:
 http://www.highrez.co.uk/downloads/inpout32/
+
+**Update:** Ya agregué las librerias al repo para que no batalles.
 
 Asegúrate de que las librerias estén el la misma carpeta que tus binarios.
 
