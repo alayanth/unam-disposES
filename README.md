@@ -57,4 +57,4 @@ Descripción de los archivos
 
 Bugs, errores, reclamaciones o dudas at alayanth@gmail.com
 
-Farewell
+Adios!
