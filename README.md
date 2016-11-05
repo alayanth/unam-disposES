@@ -46,7 +46,7 @@ Descripción de los archivos
   ServidorWifi.java
   MoverMotor.cpp
   ```
-  * Nuevamente se utiliza una arquitectura cliente <-> servidor basado en sockets sin cifrado; la implemementación fue hecha con Wi-Fi pero no debería tener ningun problema al usarse en redes alámbricas. Aquí el servidor recibe las instrucciones del cliente y manda a llamar al binario MoverMotor.exe (compilado a partir del archivo `MoverMotor.cpp`), se envian los parámentros especificados y el motor a pasos se mueve conforme a lo espeficiado.
+  * Nuevamente se utiliza una arquitectura cliente <-> servidor basado en sockets sin cifrado; la implemementación fue hecha con Wi-Fi pero no debería tener ningun problema al usarse en redes alámbricas. Aquí el servidor recibe las instrucciones del cliente y manda a llamar al binario MoverMotor.exe (compilado a partir del archivo `MoverMotor.cpp`), se envian los parámentros especificados y el motor a pasos se mueve conforme a lo especificado.
 
 Bugs, errores, reclamaciones o dudas at alayanth@gmail.com
 
