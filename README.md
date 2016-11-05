@@ -33,14 +33,16 @@ Descripción de los archivos
   PParallelMotor.cpp
   ```
   * El código de este archivo crea un programa que recibe datos de los pines 11, 10 y 12 del puerto paralelo (registro de estados, y sí en ese órden de pines) y envia instrucciones al primer nibble (pines 2, 3, 4 y 5) del registro de entrada del puerto, para mover un motor a pasos conforme a lo que se describe en la sigueinte tabla.
-  
-  | Entrada (11,10,12)  | Salida (2, 3, 4, 5) |
-  | ------------------  | ------------------- |
-  | 111                 | 1080° izquierda     |
-  | 000                 | 720° derecha        |
-  | 101                 | 180° izquierda      |
-  | 110                 | 360° derecha        |
- 
+<center>
+
+| Entrada (11,10,12)  | Salida (2, 3, 4, 5) |
+| ------------------  | ------------------- |
+| 111                 | 1080° izquierda     |
+| 000                 | 720° derecha        |
+| 101                 | 180° izquierda      |
+| 110                 | 360° derecha        |
+
+</center>
   
   ```
   ClienteSerie.ccp
