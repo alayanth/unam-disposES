@@ -5,9 +5,9 @@ En este repositorio encontrarás el código fuente para las prácticas que invol
 
 Descripción de los archivos
 ---------------------------
-  ->ClienteSerie.ccp
-  ->ServidorSerie.cpp
-    *Estos archivos se usan en conjunto para lograr una comuncación del cliente al servidor por el puerto serie y envia instrucciones al       puerto paralelo para mover el motor a pasos
+  - ClienteSerie.ccp
+  * ServidorSerie.cpp
+   * Estos archivos se usan en conjunto para lograr una comuncación del cliente al servidor por el puerto serie y envia instrucciones al       puerto paralelo para mover el motor a pasos
   
 
 El código fuente fue escrito en C++ y Java, además vas a necesitar unas librerias que puedes encontrar en:
