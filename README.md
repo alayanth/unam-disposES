@@ -39,14 +39,14 @@ Descripción de los archivos
   ClienteSerie.ccp
   ServidorSerie.cpp
   ```
-  * Estos archivos se usan en conjunto para lograr una comunicación cliente | servidor por el puerto serie, una vez realizada la conexión, se envían instrucciones al puerto paralelo para mover el motor a pasos.
+  * Estos archivos se usan en conjunto para lograr una comunicación cliente <-> servidor por el puerto serie, una vez realizada la conexión, se envían instrucciones al puerto paralelo para mover el motor a pasos.
   
   ```
   ClienteWifi.java
   ServidorWifi.java
   MoverMotor.cpp
   ```
-  * Nuevamente se utiliza una arquitectura cliente servidor basado en sockets sin cifrado; la implemementación fue hecha con Wi-Fi pero no debería tener ningun problema al usarse en redes alámbricas. Aquí el servidor recibe las instrucciones del cliente y manda a llamar al binario MoverMotor.exe (compilado a partir del archivo `MoverMotor.cpp`), se envian los parámentros especificados y el motor a pasos se mueve conforme a lo espeficiado.
+  * Nuevamente se utiliza una arquitectura cliente <-> servidor basado en sockets sin cifrado; la implemementación fue hecha con Wi-Fi pero no debería tener ningun problema al usarse en redes alámbricas. Aquí el servidor recibe las instrucciones del cliente y manda a llamar al binario MoverMotor.exe (compilado a partir del archivo `MoverMotor.cpp`), se envian los parámentros especificados y el motor a pasos se mueve conforme a lo espeficiado.
 
 Bugs, errores, reclamaciones o dudas at alayanth@gmail.com
 
