@@ -1,7 +1,7 @@
 # UNAM - Dispositivos de almacenamiento y de entrada y salida
 Hola.
 
-En este repositorio encontrarás el código fuente para las prácticas que involucran el uso del puerto paralelo, el puerto serial y una conexión de red (puede ser via Ethernet o Wi-Fi); para en la primer práctica, escribir datos a una memoria RAM y en las siguientes prácticas mover un motor a pasos (generalmente son las 6, 7, 8, 9 y 10).
+En este repositorio encontrarás el código fuente para las prácticas que involucran el uso del puerto paralelo, el puerto serial y una conexión de red (puede ser vía Ethernet o Wi-Fi); para en la primer práctica, escribir datos a una memoria RAM y en las siguientes prácticas mover un motor a pasos (generalmente son las 6, 7, 8, 9 y 10).
 
 El código fuente fue escrito en C++ y Java, además vas a necesitar unas librerias que puedes encontrar en:
 http://www.highrez.co.uk/downloads/inpout32/
@@ -15,12 +15,12 @@ Descripción de los archivos
   ```
   PParallelLED.ccp
   ```
-  * Este código envía 1 byte al registro de salida del puerto paralelo, los valores que recibe son decimales entre 0 y 255, que son transformados a binario y posteriormente se envían al registro de salida del puerto paralelo.
+  * Este código envía 1 byte al registro de salida del puerto paralelo, los valores que recibe son decimales entre 0 y 255, que son transformados a binario y posteriormente se envían al registro de salida del puerto paralelo, puedes ver la salida poniendo unos leds.
   
   ```  
   PParallelDisplay.cpp
   ```
-  * Este códido hace lo mismo que `PParallelLED.cpp` la diferencia radica en que está codificado para mostrar las letras del abecedario inglés (no hay ñ) y los números del 0 al 9, además incluye a los caratéres `.` y `-`. Esto con el fin de hacer la escritura de carateres en la memoria RAM más facilmente.
+  * Este códido hace lo mismo que `PParallelLED.cpp` la diferencia radica en que está codificado para mostrar las letras del abecedario inglés (no hay ñ) y los números del 0 al 9, además incluye a los caratéres `.` y `-`. Esto con el fin de hacer la escritura de carateres en la memoria RAM más facilmente. Tomar en cuenta que este programa esta codificado para trabajar con un display de anodo común (prende en ceros).
   
   ```  
   PParallelMotor.cpp
