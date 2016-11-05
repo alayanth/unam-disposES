@@ -8,7 +8,7 @@ El código fuente fue escrito en C++ y Java, además vas a necesitar las libreri
 inpout32.dll
 inpoutx64.dll
 ```
-Que puedes encontrar en:
+Que también puedes encontrar en:
 http://www.highrez.co.uk/downloads/inpout32/
 
 **Update:** Ya agregué las librerias al repo para que no batalles.
