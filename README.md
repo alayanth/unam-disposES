@@ -10,16 +10,17 @@ Asegúrate de que las librerias estén el la misma carpeta que tus binarios.
 
 Descripción de los archivos
 ---------------------------
-
+  
+  
   ```
   PParallelLED.ccp
   ```
-  * Este código envía 1 byte al resgistro de salida del puerto paralelo, los valores que recibe son decimales entre 0 y 255, que son transformados a binario y posteriormente se envian al registro de salida del puerto paralelo.
+  * Este código envía 1 byte al registro de salida del puerto paralelo, los valores que recibe son decimales entre 0 y 255, que son transformados a binario y posteriormente se envían al registro de salida del puerto paralelo.
   
   ```  
   PParallelDisplay.cpp
   ```
-  * Este códido hace lo mismo que `PParallelLED.cpp` la diferencia radica en que esta codificado para mostrar las letras del abecedario inglés (no hay ñ) y los números del 0 al 9, además incluye a los caratéres `.` y `-`. Esto con el fin de hacer la escritura de carateres en la memoria RAM más facilmente.
+  * Este códido hace lo mismo que `PParallelLED.cpp` la diferencia radica en que está codificado para mostrar las letras del abecedario inglés (no hay ñ) y los números del 0 al 9, además incluye a los caratéres `.` y `-`. Esto con el fin de hacer la escritura de carateres en la memoria RAM más facilmente.
   
   ```  
   PParallelMotor.cpp
@@ -38,7 +39,7 @@ Descripción de los archivos
   ClienteSerie.ccp
   ServidorSerie.cpp
   ```
-  * Estos archivos se usan en conjunto para lograr una comuncación cliente | servidor por el puerto serie, una vez realizada la conexión envia instrucciones al puerto paralelo para mover el motor a pasos
+  * Estos archivos se usan en conjunto para lograr una comunicación cliente | servidor por el puerto serie, una vez realizada la conexión, se envían instrucciones al puerto paralelo para mover el motor a pasos.
   
   ```
   ClienteWifi.java
