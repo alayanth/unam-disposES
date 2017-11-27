@@ -53,13 +53,13 @@ Descripción de los archivos
   ```
   * Nuevamente se utiliza una arquitectura cliente <-> servidor basado en sockets sin cifrado; la implemementación fue hecha con Wi-Fi pero no debería tener ningun problema al usarse en redes alámbricas. Aquí el servidor recibe las instrucciones del cliente y manda a llamar al binario MoverMotor.exe (compilado a partir del archivo `MoverMotor.cpp`), se envian los parámentros especificados y el motor a pasos se mueve conforme a lo especificado.
   
-##Notas respecto a la práctica Wi-Fi
+## Notas respecto a la práctica Wi-Fi
 
-  * El código de Java fue probado y compilado usando el JDK versión 7
-  * El código en C++ fue probado y compilado usando Code::Blocks
-  * El código ha sido probado en cualquiera de las dos primeras máquinas de la primera fila a lado de la ventana, las máquinas de la segunda fila de enmedio no funcionaron para este código.
-  * Se utilizó el adaptador Tenda W311MI compatible con XP. Está es la liga del producto:  http://www.tendacn.com/en/product/W311MI.html (Al instalar el driver no es necesario reiniciar el equipo)
-  * A veces la conexión Ad-hoc se desconecta y ya no era posible volverse a conectar servidor y el cliente; se debe crear otra red Ad-hoc para que funcione nuevamente.
+    * El código de Java fue probado y compilado usando el JDK versión 7
+    * El código en C++ fue probado y compilado usando Code::Blocks
+    * El código ha sido probado en cualquiera de las dos primeras máquinas de la primera fila a lado de la ventana, las máquinas de la segunda fila de enmedio no funcionaron para este código.
+    * Se utilizó el adaptador Tenda W311MI compatible con XP. Está es la liga del producto:  http://www.tendacn.com/en/product/W311MI.html (Al instalar el driver no es necesario reiniciar el equipo)
+    * A veces la conexión Ad-hoc se desconecta y ya no era posible volverse a conectar servidor y el cliente; se debe crear otra red Ad-hoc para que funcione nuevamente.
 
 Bugs, errores, reclamaciones o dudas puedes hacerlas al correo alayanth@gmail.com
 
