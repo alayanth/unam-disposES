@@ -55,11 +55,11 @@ Descripción de los archivos
   
 ## Notas respecto a la práctica Wi-Fi
 
-    * El código de Java fue probado y compilado usando el JDK versión 7
-    * El código en C++ fue probado y compilado usando Code::Blocks
-    * El código ha sido probado en cualquiera de las dos primeras máquinas de la primera fila a lado de la ventana, las máquinas de la segunda fila de enmedio no funcionaron para este código.
-    * Se utilizó el adaptador Tenda W311MI compatible con XP. Está es la liga del producto:  http://www.tendacn.com/en/product/W311MI.html (Al instalar el driver no es necesario reiniciar el equipo)
-    * A veces la conexión Ad-hoc se desconecta y ya no era posible volverse a conectar servidor y el cliente; se debe crear otra red Ad-hoc para que funcione nuevamente.
+  * El código de Java fue probado y compilado usando el JDK versión 7
+  * El código en C++ fue probado y compilado usando Code::Blocks
+  * El código ha sido probado en cualquiera de las dos primeras máquinas de la primera fila a lado de la ventana, las máquinas de la segunda fila de enmedio no funcionaron para este código.
+  * Se utilizó el adaptador Tenda W311MI compatible con XP. Está es la liga del producto:  http://www.tendacn.com/en/product/W311MI.html (Al instalar el driver no es necesario reiniciar el equipo)
+  * A veces la conexión Ad-hoc se desconecta y ya no era posible volverse a conectar servidor y el cliente; se debe crear otra red Ad-hoc para que funcione nuevamente.
 
 Bugs, errores, reclamaciones o dudas puedes hacerlas al correo alayanth@gmail.com
 
